@@ -24,7 +24,8 @@ def user_login(request):
         user = authenticate(request, email= email, password= password)
         if user is not None:
             login(request, user)
-            messages.success("you have succcessfully logged in")
+            messages.success(request,"you have succcessfully logged in")
+            return redirect("profile")
         else:
             messages.error("Invalid email or password")
     else:
