@@ -5,13 +5,16 @@ from accounts.models import CustomUser
 
 class Cart(TimeStampedModel):
     session_key = models.CharField(max_length=250)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, related_name="cart_products")
 
     def __str__(self):
-        return self.session_key
+        if self.user:
+            return f"Cart for User : {self.user.first_name}"
+        else:
+            return f"Anonymous Cart : {self.session_key}"
 
 
 class CartItem(TimeStampedModel):
-    user = models.ForeignKey(CustomUser, on_delete=models.DO_NOTHING, null=True)
     product = models.ForeignKey(Product, on_delete=models.DO_NOTHING, null=True)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
     quantity = models.PositiveSmallIntegerField(default=0)

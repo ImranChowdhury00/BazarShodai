@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect, render 
 from products.models import Product
 from .models import Cart, CartItem
 from .utils import get_session_key
@@ -18,7 +18,6 @@ def add_cart(request, product_slug):
         cart_item = CartItem(
             product=product,
             cart=cart,
-            user=request.user,
             quantity=0,
         )
 
@@ -53,6 +52,7 @@ def cart_detail(request, total=0, quantity=0, cart_items=None):
     else:
         cart = get_object_or_404(Cart, session_key=get_session_key(request))
 
+    print(cart)
     cart_items = CartItem.objects.filter(cart=cart).select_related("product")
     total = 0
     for cart_item in cart_items:
@@ -63,6 +63,7 @@ def cart_detail(request, total=0, quantity=0, cart_items=None):
         "total": total,
         "quantity": quantity,
         "cart_items": cart_items,
-        "grand_total": total + settings.DELIVERY_CHARGE,
+        "grand_total": total ,
     }
+    print(cart_items)
     return render(request, "carts/cart.html", context)

@@ -36,7 +36,7 @@ def user_login(request):
 @login_required
 def user_logout(request):
     logout(request)
-    return redirect('signup')
+    return redirect('login')
 
 
 @login_required

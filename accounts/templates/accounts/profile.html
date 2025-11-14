@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}User Dashboard {% endblock %}
+{% block title %}Dashboard {% endblock %}
 {% block content %}
 <!-- Breadcrumb Section Start -->
 <section class="breadcrumb-section pt-0">
@@ -12,7 +12,7 @@
                     <nav>
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item">
-                                <a href="index.html">
+                                <a href="{% url "home" %}">
                                     <i class="fa-solid fa-house"></i>
                                 </a>
                             </li>
@@ -56,7 +56,7 @@
                             </div>
 
                             <div class="profile-name">
-                                <h3>{{user_info.username }}</h3>
+                                <h3>{{user_info.first_name }} {{user_info.last_name}}</h3>
                                 <h6 class="text-content"> {{user_info.email}}</h6>
                             </div>
                         </div>
@@ -129,7 +129,7 @@
                                 </div>
 
                                 <div class="dashboard-user-name">
-                                    <h6 class="text-content">Hello, <b class="text-title">{{user_info.username}}</b>
+                                    <h6 class="text-content">Hello, <b class="text-title">{{user_info.first_name}} {{user_info.last_name}}</b>
                                     </h6>
                                     <p class="text-content">From your My Account Dashboard you have the ability to
                                         view a snapshot of your recent account activity and update your account

@@ -40,7 +40,7 @@ class Product(TimeStampedModel):
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.category_name)
+        self.slug = slugify(self.category)
         super().save(*args, **kwargs)
 
     @property

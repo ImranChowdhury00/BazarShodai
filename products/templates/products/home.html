@@ -10,7 +10,7 @@
                 <div class="slider-animate">
                     <div>
                         <div class="home-contain rounded-0 p-0">
-                            <img src="{% static 'assets/images/grocery/banner/download.jpeg'%}"
+                            <img src="{% static 'assets/images/grocery/banner/14-Grocery-World.avif'%}"
                                 class="img-fluid bg-img blur-up lazyload" alt="">
                             <div class="home-detail home-big-space p-center-left home-overlay position-relative">
                                 <div class="container-fluid-lg">
@@ -79,7 +79,7 @@
             <div>
                 <div class="banner-contain-3 hover-effect">
                     <a href="javascript:void(0)">
-                        <img src="" {% static 'assets/images/grocery/banner/111.png' %}""
+                        <img src=" {% static 'assets/images/grocery/banner/download.jpeg' %}"
                             class="blur-up lazyload bg-img" alt="">
                     </a>
                     <div class="banner-detail p-center-left w-75 banner-p-sm mend-auto">
@@ -147,12 +147,12 @@
                     <div>
                         <div class="category-box-list">
                             <a href="shop-left-sidebar.html" class="category-name">
-                                <h4>{{category.name}}</h4>
+                                <h4>{{category.category_name}}</h4>
                                 <h6>{{ category.product_count }} items</h6>
                             </a>
                             <div class="category-box-view">
                                 <a href="shop-left-sidebar.html">
-                                    <img src="{{ category.image.url }}" class="img-fluid blur-up lazyload"
+                                    <img src="{{ category.category_img.url }}" class="img-fluid blur-up lazyload"
                                         alt="{{category.name}}">
                                 </a>
                                 <!-- #TODO: set category_products page -->
