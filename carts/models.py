@@ -4,7 +4,7 @@ from accounts.models import CustomUser
 
 
 class Cart(TimeStampedModel):
-    session_key = models.CharField(max_length=250)
+    session_key = models.CharField(max_length=250, null=True, blank=True)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, related_name="carts")
 
     def __str__(self):

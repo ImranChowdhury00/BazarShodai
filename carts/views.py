@@ -8,18 +8,27 @@ from .utils import get_session_key
 
 def add_cart(request, product_slug):
     product = get_object_or_404(Product, slug=product_slug)
-    try:
-        cart = Cart.objects.get(session_key=get_session_key(request))
-    except Cart.DoesNotExist:
-        cart = Cart.objects.create(session_key=get_session_key(request))
+    if request.user.is_authenticated:
+        try:
+            cart = Cart.objects.get(user= request.user)
+        except Cart.DoesNotExist:
+            cart = Cart.objects.create(user = request.user)
+    else:
+        try:
+            cart = Cart.objects.get(session_key=get_session_key(request))
+        except Cart.DoesNotExist:
+            cart = Cart.objects.create(session_key=get_session_key(request))
         
     try:
         cart_item = CartItem.objects.get(product=product, cart=cart)
     except CartItem.DoesNotExist:
+
+        user= request.user if request.user.is_authenticated else None
         cart_item = CartItem(
             product=product,
             cart=cart,
             quantity=0,
+            user = user
         )
 
     cart_item.quantity += 1
