@@ -5,6 +5,7 @@ from .models import Cart, CartItem
 from .utils import get_session_key
 
 
+
 def add_cart(request, product_slug):
     product = get_object_or_404(Product, slug=product_slug)
     try:
@@ -51,8 +52,7 @@ def cart_detail(request, total=0, quantity=0, cart_items=None):
         cart = get_object_or_404(Cart, user=request.user)
     else:
         cart = get_object_or_404(Cart, session_key=get_session_key(request))
-
-    print(cart)
+        
     cart_items = CartItem.objects.filter(cart=cart).select_related("product")
     total = 0
     for cart_item in cart_items:
@@ -63,7 +63,6 @@ def cart_detail(request, total=0, quantity=0, cart_items=None):
         "total": total,
         "quantity": quantity,
         "cart_items": cart_items,
-        "grand_total": total ,
+        "grand_total": total + settings.DELIVERY_CHARGE,
     }
-    print(cart_items)
     return render(request, "carts/cart.html", context)

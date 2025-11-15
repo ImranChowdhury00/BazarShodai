@@ -5,7 +5,7 @@ from accounts.models import CustomUser
 
 class Cart(TimeStampedModel):
     session_key = models.CharField(max_length=250)
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, related_name="cart_products")
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, related_name="carts")
 
     def __str__(self):
         if self.user:
@@ -15,8 +15,9 @@ class Cart(TimeStampedModel):
 
 
 class CartItem(TimeStampedModel):
-    product = models.ForeignKey(Product, on_delete=models.DO_NOTHING, null=True)
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE,related_name="cart_products")
+    product = models.ForeignKey(Product, null=True,on_delete=models.DO_NOTHING, related_name="cart_products")
+    user = models.ForeignKey(CustomUser, on_delete=models.DO_NOTHING, null=True)
     quantity = models.PositiveSmallIntegerField(default=0)
 
     def sub_total(self):
