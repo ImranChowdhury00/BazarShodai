@@ -40,7 +40,17 @@ class Product(TimeStampedModel):
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.category)
+        base_slug = slugify(self.name)
+
+        if not self.pk or self.slug != base_slug:
+            unique_slug = base_slug
+            counter = 1
+        
+            while Product.objects.filter(slug=unique_slug).exclude(pk=self.pk).exists():
+                unique_slug = f'{base_slug}-{counter}'
+                counter += 1
+    
+            self.slug = unique_slug
         super().save(*args, **kwargs)
 
     @property
