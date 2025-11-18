@@ -1,5 +1,5 @@
 # BazarShodai
-Single Vendor E-commerce Platform, built using `Django`, offering secure login with email authentication and secure payment with **SSLCommerz**.
+Single Vendor E-commerce Platform, built using Django, offering secure login with email authentication and secure payment with SSLCommerz.
 
 ---
 
@@ -72,7 +72,7 @@ py manage.py createsuperuser
 ```
 5. **Environment variables**
 
-Create a folder named `.env` in the root directory and add you secret keys. **This is very secuired folder. Don't share this folder.**
+Create a folder named `.env` in the root directory and add you secret keys. **This is very secured folder. Don't share this folder.**
 ```bash
 DELIVERY_CHARGE=120
 
