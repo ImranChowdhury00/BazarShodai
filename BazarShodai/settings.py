@@ -144,7 +144,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
-# email authentication
+# email backend-authentication
 AUTHENTICATION_BACKENDS = [
     "accounts.authentication.EmailBackend",
     "django.contrib.auth.backends.ModelBackend",
@@ -159,3 +159,8 @@ EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 EMAIL_HOST_USER = env("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+
+# sslcommerz integration
+SSLCOMMERZ_IS_SANDBOX = env("SSLCOMMERZ_IS_SANDBOX")
+SSLCOMMERZ_STORE_ID = env("SSLCOMMERZ_STORE_ID")
+SSLCOMMERZ_STORE_PASS = env("SSLCOMMERZ_STORE_PASS")

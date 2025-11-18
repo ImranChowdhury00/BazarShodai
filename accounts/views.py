@@ -74,8 +74,8 @@ def profile(request):
     if request.method == 'POST':
         user.email = request.POST.get("email", user.email)
         user.mobile = request.POST.get("mobile", user.mobile)
-        user.address_1 = request.POST.get("address_line_1", user.address_1)
-        user.address_2 = request.POST.get("address_line_2", user.address_2)
+        user.address_1 = request.POST.get("address_line_1", user.address_line_1)
+        user.address_2 = request.POST.get("address_line_2", user.address_line_2)
         user.city = request.POST.get("city", user.city)
         user.state = request.POST.get("state", user.state)
         user.country = request.POST.get("country", user.country)
